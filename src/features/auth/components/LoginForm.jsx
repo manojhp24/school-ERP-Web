@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
+("");
 const LoginForm = () => {
   return (
     <Box
@@ -78,10 +78,14 @@ const LoginForm = () => {
                 <TextField fullWidth label="Password" type="password" />
 
                 <Button
-                  type="submit"
                   variant="contained"
                   size="large"
                   fullWidth
+                  sx={{
+                    py: 1.5,
+                    borderRadius: 3,
+                    boxShadow: "none",
+                  }}
                 >
                   Login to Dashboard
                 </Button>
@@ -89,18 +93,6 @@ const LoginForm = () => {
             </Box>
 
             {/* Login Button */}
-            <Button
-              variant="contained"
-              size="large"
-              fullWidth
-              sx={{
-                py: 1.5,
-                borderRadius: 3,
-                boxShadow: "none",
-              }}
-            >
-              Login to Dashboard
-            </Button>
 
             {/* Footer */}
             <Stack
