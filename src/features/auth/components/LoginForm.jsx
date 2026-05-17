@@ -11,48 +11,28 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import CircularProgress from "@mui/material/CircularProgress";
 
-import loginSchemea from "../../validations/loginSchema";
+import loginSchema from "../../validations/loginSchema";
 import useLogin from "../hooks/useLogin";
 import { useEffect } from "react";
+import useLoginForm from "../hooks/useLoginForm";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(loginSchemea),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-
-  const { mutate, isPending, isError, error, isSuccess, data } = useLogin();
-
-  const onSubmit = (formData) => {
-    mutate(formData);
-  };
-
-  useEffect(() => {
-    if (isSuccess && data) {
-      localStorage.setItem("assessToken", data?.data?.token);
-      localStorage.setItem("user", data?.data?.user);
-      toast.success(data?.message);
-      console.log(data);
-    }
-  }, [isSuccess, data]);
-
-  useEffect(() => {
-    if (isError) {
-      const message = error?.response?.data?.message || "Login failed";
-
-      toast.error(message);
-      console.error(message);
-    }
-  }, [isError, error]);
-
+    errors,
+    onSubmit,
+    isPending,
+    handleTogglePassword,
+    showPassword,
+  } = useLoginForm();
   return (
     <Box
       sx={{
@@ -129,10 +109,25 @@ const LoginForm = () => {
                 <TextField
                   fullWidth
                   label="Password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   error={!!errors.password}
                   helperText={errors.password?.message}
                   {...register("password")}
+                  slotProps={{
+                    input: {
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={handleTogglePassword} edge="end">
+                            {showPassword ? (
+                              <VisibilityOffOutlinedIcon />
+                            ) : (
+                              <VisibilityOutlinedIcon />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
                 />
 
                 <Button
@@ -147,7 +142,11 @@ const LoginForm = () => {
                     boxShadow: "none",
                   }}
                 >
-                  {isPending ? "Logging In" : "Login to Dashboard"}
+                  {isPending ? (
+                    <CircularProgress size={24} color="inherit" />
+                  ) : (
+                    "Login to Dashboard"
+                  )}
                 </Button>
               </Stack>
             </Box>

@@ -1,7 +1,7 @@
 import schoolLogo from "../../../assets/images/logo-placeholder.png";
 
 const branding = {
-  schoolName: "Gayathri Vidhyalaya",
+  schoolName: "School ERP",
 
   logo: schoolLogo,
 

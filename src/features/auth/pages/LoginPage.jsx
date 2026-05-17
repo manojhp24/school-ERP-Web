@@ -13,8 +13,19 @@ import {
 import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
 import LoginForm from "../components/LoginForm";
 import LoginBranding from "../components/LoginBranding";
+import { Navigate, replace } from "react-router-dom";
+import { getToken } from "../../../utils/auth/auth.js";
 
 function LoginPage() {
+  const token = getToken();
+
+  // if(token){
+  //   return(
+  //     <Navigate to=""/>
+  //     replace
+  //   )
+  // }
+
   return (
     <Box
       sx={{
