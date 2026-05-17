@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { toast } from "react-toastify";
 
-import loginSchema from "../../validations/loginSchema";
+import loginSchema from "../validations/loginSchema";
 import useLogin from "./useLogin";
 import getErrorMessage from "../../../services/api/apiErrorHandler";
 

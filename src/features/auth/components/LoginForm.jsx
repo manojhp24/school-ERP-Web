@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import loginSchema from "../../validations/loginSchema";
+import loginSchema from "../validations/loginSchema";
 import useLogin from "../hooks/useLogin";
 import { useEffect } from "react";
 import useLoginForm from "../hooks/useLoginForm";
