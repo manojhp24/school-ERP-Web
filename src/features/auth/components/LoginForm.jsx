@@ -7,8 +7,52 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-("");
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
+
+import loginSchemea from "../../validations/loginSchema";
+import useLogin from "../hooks/useLogin";
+import { useEffect } from "react";
+
 const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(loginSchemea),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const { mutate, isPending, isError, error, isSuccess, data } = useLogin();
+
+  const onSubmit = (formData) => {
+    mutate(formData);
+  };
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      localStorage.setItem("assessToken", data?.data?.token);
+      localStorage.setItem("user", data?.data?.user);
+      toast.success(data?.message);
+      console.log(data);
+    }
+  }, [isSuccess, data]);
+
+  useEffect(() => {
+    if (isError) {
+      const message = error?.response?.data?.message || "Login failed";
+
+      toast.error(message);
+      console.error(message);
+    }
+  }, [isError, error]);
+
   return (
     <Box
       sx={{
@@ -71,23 +115,39 @@ const LoginForm = () => {
             </Box>
 
             {/* Form */}
-            <Box component="form">
+            <Box component="form" onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing={2.5}>
-                <TextField fullWidth label="Admin Email" type="email" />
+                <TextField
+                  fullWidth
+                  label="Admin Email"
+                  type="email"
+                  error={!!errors.email}
+                  helperText={errors.email?.message}
+                  {...register("email")}
+                />
 
-                <TextField fullWidth label="Password" type="password" />
+                <TextField
+                  fullWidth
+                  label="Password"
+                  type="password"
+                  error={!!errors.password}
+                  helperText={errors.password?.message}
+                  {...register("password")}
+                />
 
                 <Button
                   variant="contained"
+                  type="submit"
                   size="large"
                   fullWidth
+                  disabled={isPending}
                   sx={{
                     py: 1.5,
                     borderRadius: 3,
                     boxShadow: "none",
                   }}
                 >
-                  Login to Dashboard
+                  {isPending ? "Logging In" : "Login to Dashboard"}
                 </Button>
               </Stack>
             </Box>
