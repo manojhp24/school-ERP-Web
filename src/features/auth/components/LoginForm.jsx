@@ -28,7 +28,7 @@ const LoginForm = () => {
           maxWidth: 430,
           border: "1px solid",
           borderColor: "divider",
-          borderRadius: 5,
+          borderRadius: 1,
           overflow: "hidden",
           boxShadow: "0px 20px 40px rgba(15,23,42,0.08)",
         }}
@@ -71,11 +71,22 @@ const LoginForm = () => {
             </Box>
 
             {/* Form */}
-            <Stack spacing={2.5}>
-              <TextField fullWidth label="Admin Email" type="email" />
+            <Box component="form">
+              <Stack spacing={2.5}>
+                <TextField fullWidth label="Admin Email" type="email" />
 
-              <TextField fullWidth label="Password" type="password" />
-            </Stack>
+                <TextField fullWidth label="Password" type="password" />
+
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  fullWidth
+                >
+                  Login to Dashboard
+                </Button>
+              </Stack>
+            </Box>
 
             {/* Login Button */}
             <Button
