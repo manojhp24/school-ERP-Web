@@ -19,12 +19,9 @@ import { getToken } from "../../../utils/auth/auth.js";
 function LoginPage() {
   const token = getToken();
 
-  // if(token){
-  //   return(
-  //     <Navigate to=""/>
-  //     replace
-  //   )
-  // }
+  if (token) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   return (
     <Box

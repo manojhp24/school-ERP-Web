@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +12,7 @@ import getErrorMessage from "../../../services/api/apiErrorHandler";
 
 const useLoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);
@@ -42,7 +44,7 @@ const useLoginForm = () => {
       localStorage.setItem("user", JSON.stringify(data?.data?.user));
 
       toast.success(data?.message);
-      // navigate("/dashboard");
+      navigate("/dashboard");
     }
   }, [isSuccess, data]);
 
