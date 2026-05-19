@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import LoginPage from "../features/auth/pages/LoginPage";
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
+import StudentPage from "../features/students/pages/StudentPage";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import ProtectedRoutes from "./ProtectedRoutes";
 
@@ -19,6 +20,7 @@ function AppRoutes() {
           }
         >
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/student" element={<StudentPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/login" replace />} />

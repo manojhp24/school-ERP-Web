@@ -12,10 +12,10 @@ export const navigationConfig = [
         title: "Dashboard",
       },
       {
-        label: "Students",
-        path: "/students",
+        label: "Student",
+        path: "/student",
         icon: PeopleOutlinedIcon,
-        title: "Students",
+        title: "Student",
       },
     ],
   },
