@@ -22,10 +22,10 @@ export const navigationConfig = [
     section: "Academics",
     items: [
       {
-        label: "Students",
-        path: "/students",
+        label: "Student",
+        path: "/student",
         icon: PeopleOutlinedIcon,
-        title: "Students",
+        title: "Student",
       },
       {
         label: "Classes",

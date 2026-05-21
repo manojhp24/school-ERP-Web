@@ -1,0 +1,78 @@
+import { Grid } from "@mui/material";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import LocationCityOutlinedIcon from "@mui/icons-material/LocationCityOutlined";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
+import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
+
+import FormSectionLayout from "../../../../components/form/FormSectionLayout";
+import AppTextField from "../../../../components/form/AppTextField";
+
+const StudentAddressStep = () => {
+  return (
+    <FormSectionLayout
+      title={"Residential Address"}
+      subtitle={"Enter student permanent residential and region details"}
+      icon={LocationOnOutlinedIcon}
+    >
+      <Grid container spacing={2.5}>
+        <Grid size={{ xs: 12 }}>
+          <AppTextField
+            label={"Address Line"}
+            required
+            type="text"
+            startIcon={<HomeOutlinedIcon fontSize="small" />}
+          />
+        </Grid>
+
+        <Grid size={{ xs: 12, md: 6 }}>
+          <AppTextField
+            label={"Village / Locality"}
+            required
+            type="text"
+            startIcon={<LocationCityOutlinedIcon fontSize="small" />}
+          />
+        </Grid>
+
+        <Grid size={{ xs: 12, md: 6 }}>
+          <AppTextField
+            label={"District"}
+            required
+            type="text"
+            startIcon={<LocationOnOutlinedIcon fontSize="small" />}
+          />
+        </Grid>
+
+        <Grid size={{ xs: 12, md: 6 }}>
+          <AppTextField
+            label={"Taluk / Sub-division"}
+            required
+            type="text"
+            startIcon={<ExploreOutlinedIcon fontSize="small" />}
+          />
+        </Grid>
+
+        <Grid size={{ xs: 12, md: 6 }}>
+          <AppTextField
+            label={"State"}
+            required
+            type="text"
+            startIcon={<MapOutlinedIcon fontSize="small" />}
+          />
+        </Grid>
+
+        <Grid size={{ xs: 12, md: 6 }}>
+          <AppTextField
+            label={"Pincode"}
+            required
+            type="text"
+            startIcon={<LocalPostOfficeOutlinedIcon fontSize="small" />}
+          />
+        </Grid>
+      </Grid>
+    </FormSectionLayout>
+  );
+};
+
+export default StudentAddressStep;
