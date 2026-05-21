@@ -1,8 +1,10 @@
 import { Button, MenuItem, Stack, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 import AddIcon from "@mui/icons-material/Add";
 
 const StudentTableToolbar = () => {
+  const navigate = useNavigate();
   return (
     <Stack direction="column" spacing={2} mb={3}>
       <Stack
@@ -40,6 +42,7 @@ const StudentTableToolbar = () => {
         <Button
           variant="contained"
           startIcon={<AddIcon />}
+          onClick={() => navigate("/student/create")}
           sx={{
             width: {
               xs: "100%",

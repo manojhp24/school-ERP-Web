@@ -1,4 +1,4 @@
-import StudentActionsMenu from "../components/StudentActionMenu";
+import StudentActionsMenu from "../components/tabel/StudentActionMenu";
 export const studentTableColumns = [
   {
     field: "satsNumber",

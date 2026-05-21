@@ -6,7 +6,23 @@ const PageContainer = ({ children }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: 3,
+        gap: {
+          xs: 2,
+          sm: 3,
+          md: 4,
+        },
+        width: "100%",
+        px: {
+          xs: 2,
+          sm: 3,
+          md: 4,
+        },
+        py: {
+          xs: 2,
+          sm: 3,
+        },
+        maxWidth: "1400px",
+        mx: "auto",
       }}
     >
       {children}

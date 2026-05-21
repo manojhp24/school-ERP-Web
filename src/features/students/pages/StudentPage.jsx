@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import PageContainer from "../../../components/PageContainer";
 import PageHeader from "../../../components/PageHeader";
-import StudentTable from "../components/StudentTable";
-import StudentTableToolbar from "../components/StudentTableToolBar";
+import StudentTable from "../components/tabel/StudentTable";
+import StudentTableToolbar from "../components/tabel/StudentTableToolBar";
 
 const StudentPage = () => {
   return (

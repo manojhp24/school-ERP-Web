@@ -30,7 +30,7 @@ const components = {
   MuiOutlinedInput: {
     styleOverrides: {
       root: {
-        borderRadius: 10,
+        borderRadius: 5,
       },
     },
   },

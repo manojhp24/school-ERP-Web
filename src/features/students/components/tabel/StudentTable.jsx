@@ -1,38 +1,19 @@
 import { Box, Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
-import { studentTableColumns } from "../constants/studentTableColumns.jsx";
-import StudentEmptyState from "./StudentEmptyState.jsx";
+import { studentTableColumns } from "../../constants/studentTableColumns.jsx";
+import StudentEmptyState from "../states/StudentEmptyState.jsx";
 import StudentTableSkeleton from "./StudentTableSkeleton.jsx";
-
-const rows = [
-  //   {
-  //     _id: "6a08236bce3ae4c471c43158",
-  //     firstName: "Rahul",
-  //     lastName: "HS",
-  //     satsNumber: "789456127",
-  //     parentDetails: {
-  //       fatherName: "Srinivas",
-  //       motherName: "Roopa",
-  //       fatherContactNumber: "6366196233",
-  //       motherContactNumber: "9945651884",
-  //     },
-  //     personalDetails: {
-  //       gender: "Male",
-  //       dateOfBirth: "2003-11-24T00:00:00.000Z",
-  //     },
-  //     addressDetails: {
-  //       village: "Hosaundavadi",
-  //       taluk: "Sri Ranga Patna",
-  //       district: "Mandya",
-  //       state: "Karnataka",
-  //       pincode: "571607",
-  //     },
-  //   },
-];
+import useStudents from "../../hooks/useStudents.js";
+import StudentErrorState from "../states/StudentErrorState.jsx";
 
 const StudentTable = () => {
-  const loading = false;
+  const { students, isLoading, isError } = useStudents();
+
+  if (isError) {
+    return <StudentErrorState />;
+  }
+
   return (
     <Paper
       elevation={0}
@@ -53,9 +34,9 @@ const StudentTable = () => {
         }}
       >
         <DataGrid
-          rows={rows}
+          rows={students}
           columns={studentTableColumns}
-          loading={loading}
+          loading={isLoading}
           getRowId={(row) => row._id}
           pageSizeOptions={[5, 10, 25]}
           initialState={{
