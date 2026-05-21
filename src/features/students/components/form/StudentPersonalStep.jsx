@@ -1,11 +1,4 @@
-import {
-  Box,
-  Grid,
-  Paper,
-  Typography,
-  TextField,
-  MenuItem,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import StudentPhotoUpload from "./StudentPhotoUpload";
 import AppTextField from "../../../../components/form/AppTextField";
 import PersonIcon from "@mui/icons-material/Person";
@@ -16,7 +9,6 @@ import CakeOutlinedIcon from "@mui/icons-material/CakeOutlined";
 import FormSectionLayout from "../../../../components/form/FormSectionLayout";
 import AppSelectField from "../../../../components/form/AppSelectFiled";
 import AppDateFiled from "../../../../components/form/AppDateField";
-import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 
 const StudentPersonalStep = () => {
   const genderOptions = [
@@ -31,28 +23,32 @@ const StudentPersonalStep = () => {
   ];
   return (
     <FormSectionLayout
-      title="Personal information"
-      subtitle="Add student personal info"
+      title="Personal Information"
+      subtitle="Enter student personal details"
       leftContent={<StudentPhotoUpload />}
       icon={PersonIcon}
     >
-      <Grid container spacing={1.75} sx={{ mb: 2 }}>
+      <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
-            label="First name"
+            label="First Name"
             required
             startIcon={<PersonOutlineOutlinedIcon />}
           />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <AppTextField label="Last name" />
+          <AppTextField
+            label="Last Name"
+            required
+            startIcon={<PersonOutlineOutlinedIcon />}
+          />
         </Grid>
       </Grid>
 
-      <Grid container spacing={1.75} sx={{ mb: 2 }}>
+      <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
-            label="SATS number"
+            label="SATS Number"
             required
             startIcon={<BadgeOutlinedIcon />}
           />
@@ -62,14 +58,17 @@ const StudentPersonalStep = () => {
             label={"Gender"}
             options={genderOptions}
             startIcon={<WcOutlinedIcon />}
+            required
           />
         </Grid>
       </Grid>
-      <Grid container spacing={1.75}>
+
+      <Grid container spacing={2.5}>
         <Grid size={{ xs: 12, md: 6 }}>
           <AppDateFiled
             label={"Date of Birth"}
             startIcon={<CakeOutlinedIcon />}
+            required
           />
         </Grid>
       </Grid>

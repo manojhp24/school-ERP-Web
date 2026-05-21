@@ -1,8 +1,23 @@
-import { TextField, MenuItem } from "@mui/material";
+import { TextField, MenuItem, InputAdornment } from "@mui/material";
 
-const AppSelectField = ({ label, options, ...props }) => {
+const AppSelectField = ({ label, options, startIcon, endIcon, ...props }) => {
   return (
-    <TextField select fullWidth label={label}>
+    <TextField
+      select
+      fullWidth
+      variant="outlined"
+      label={label}
+      InputProps={{
+        startAdornment: startIcon ? (
+          <InputAdornment position="start">{startIcon}</InputAdornment>
+        ) : null,
+
+        endAdornment: endIcon ? (
+          <InputAdornment position="end">{endIcon}</InputAdornment>
+        ) : null,
+      }}
+      {...props}
+    >
       {options.map((option) => (
         <MenuItem key={option.value} value={option.value}>
           {option.label}

@@ -1,17 +1,23 @@
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-const AppDateFiled = ({ label, ...props }) => {
+import { InputAdornment } from "@mui/material";
+
+const AppDateFiled = ({ label, startIcon, ...props }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
         label={label}
-        fullWidth
         {...props}
         slotProps={{
           textField: {
             fullWidth: true,
             size: "small",
+            InputProps: {
+              startAdornment: startIcon ? (
+                <InputAdornment position="start">{startIcon}</InputAdornment>
+              ) : null,
+            },
           },
         }}
       />
