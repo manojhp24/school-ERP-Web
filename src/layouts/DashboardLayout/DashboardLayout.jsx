@@ -3,19 +3,25 @@ import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import { Box, Toolbar } from "@mui/material";
+import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
-import SideBar from "./SideBar";
+import SideBar from "./Sidebar";
 import Navbar from "./NavBar";
+import { DRAWER_WIDTH, COLLAPSED_DRAWER_WIDTH } from "./constants";
 
 const DashboardLayout = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   const handelDrawerToggle = () => {
     setMobileOpen((prev) => !prev);
+  };
+
+  const handleToggleCollapse = () => {
+    setCollapsed((prev) => !prev);
   };
 
   return (
@@ -28,36 +34,43 @@ const DashboardLayout = () => {
     >
       {/*Sidebar*/}
       <Box
+        component="nav"
         sx={{
-          width: "260",
+          width: isMobile ? 0 : (collapsed ? COLLAPSED_DRAWER_WIDTH : DRAWER_WIDTH),
           flexShrink: 0,
-          backgroundColor: "background.paper",
-          borderRight: 1,
-          borderColor: "divider",
+          transition: theme.transitions.create("width", {
+            easing: theme.transitions.easing.sharp,
+            duration: collapsed
+              ? theme.transitions.duration.enteringScreen
+              : theme.transitions.duration.leavingScreen,
+          }),
         }}
       >
         <SideBar
           isMobile={isMobile}
           mobileOpen={mobileOpen}
           onClose={handelDrawerToggle}
+          collapsed={collapsed}
+          onToggleCollapse={handleToggleCollapse}
         />
       </Box>
+
       {/*Main Area */}
-      <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+          minWidth: 0, // Prevent flex grid item blowout
+        }}
+      >
         {/*NavBar */}
-        <Box
-          sx={{
-            height: 64,
-            backgroundColor: "background.paper",
-            borderBottom: 1,
-            borderColor: "divider",
-            display: "flex",
-            alignItems: "center",
-            px: 3,
-          }}
-        >
-          <Navbar isMobile={isMobile} onMenuClick={handelDrawerToggle} />
-        </Box>
+        <Navbar
+          isMobile={isMobile}
+          onMenuClick={handelDrawerToggle}
+          collapsed={collapsed}
+          onToggleCollapse={handleToggleCollapse}
+        />
 
         {/*Page content*/}
         <Box
@@ -73,8 +86,8 @@ const DashboardLayout = () => {
               p: {
                 xs: 2,
                 sm: 3,
+                md: 4,
               },
-
               maxWidth: 1600,
               width: "100%",
               mx: "auto",

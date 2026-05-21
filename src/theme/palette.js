@@ -224,8 +224,91 @@ export const lightPalette = {
   },
 };
 
+// ── Dark Palette ────────────────────────────────────────────────────────────
+
+export const darkPalette = {
+  mode: "dark",
+
+  // 10% Accent
+  primary: {
+    lighter: "rgba(59, 130, 246, 0.1)",
+    light: colorTokens.navy[300],
+    main: colorTokens.navy[400],
+    dark: colorTokens.navy[500],
+    darker: colorTokens.navy[600],
+    contrastText: "#FFFFFF",
+  },
+
+  // 30% Supporting
+  secondary: {
+    lighter: colorTokens.slate[800],
+    light: colorTokens.slate[400],
+    main: colorTokens.slate[300],
+    dark: colorTokens.slate[200],
+    darker: colorTokens.slate[100],
+    contrastText: "#0F172A",
+  },
+
+  // 60% Neutral
+  background: {
+    default: colorTokens.slate[900],
+    paper: colorTokens.slate[800],
+    neutral: "#161e2e",
+  },
+
+  text: {
+    primary: colorTokens.slate[100],
+    secondary: colorTokens.slate[400],
+    disabled: colorTokens.slate[600],
+  },
+
+  divider: colorTokens.slate[700],
+
+  success: {
+    lighter: "rgba(22, 163, 74, 0.1)",
+    light: colorTokens.green[100],
+    main: colorTokens.green[500],
+    dark: colorTokens.green[600],
+    contrastText: "#FFFFFF",
+  },
+
+  warning: {
+    lighter: "rgba(217, 119, 6, 0.1)",
+    light: colorTokens.amber[100],
+    main: colorTokens.amber[500],
+    dark: colorTokens.amber[600],
+    contrastText: "#0F172A",
+  },
+
+  error: {
+    lighter: "rgba(220, 38, 38, 0.1)",
+    light: colorTokens.red[100],
+    main: colorTokens.red[500],
+    dark: colorTokens.red[600],
+    contrastText: "#FFFFFF",
+  },
+
+  info: {
+    lighter: "rgba(3, 105, 161, 0.1)",
+    light: colorTokens.blue[100],
+    main: colorTokens.blue[500],
+    dark: colorTokens.blue[600],
+    contrastText: "#FFFFFF",
+  },
+
+  action: {
+    active: colorTokens.navy[400],
+    hover: "rgba(59, 130, 246, 0.08)",
+    selected: "rgba(59, 130, 246, 0.16)",
+    disabled: colorTokens.slate[500],
+    disabledBackground: colorTokens.slate[800],
+    focus: "rgba(59, 130, 246, 0.16)",
+  },
+};
+
 export default {
   light: lightPalette,
+  dark: darkPalette,
   tokens: colorTokens,
   semantic: semanticTokens,
 };
