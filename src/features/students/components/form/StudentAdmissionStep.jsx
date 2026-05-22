@@ -47,7 +47,14 @@ const StudentAdmissionStep = () => {
       <Grid container spacing={4}>
         {/* Admission & Enrollment Details */}
         <Grid size={{ xs: 12, md: 6 }}>
-          <Box sx={{ pb: 1, mb: 2, borderBottom: "1px solid", borderColor: "divider" }}>
+          <Box
+            sx={{
+              pb: 1,
+              mb: 2,
+              borderBottom: "1px solid",
+              borderColor: "divider",
+            }}
+          >
             <Typography
               variant="subtitle2"
               fontWeight={700}
@@ -60,6 +67,7 @@ const StudentAdmissionStep = () => {
           <Grid container spacing={2.5}>
             <Grid size={{ xs: 12 }}>
               <AppTextField
+                name="admission.admissionNumber"
                 label={"Admission Number"}
                 required
                 type="text"
@@ -68,6 +76,7 @@ const StudentAdmissionStep = () => {
             </Grid>
             <Grid size={{ xs: 12 }}>
               <AppTextField
+                name="admission.rollNumber"
                 label={"Roll Number"}
                 required
                 type="text"
@@ -76,12 +85,14 @@ const StudentAdmissionStep = () => {
             </Grid>
             <Grid size={{ xs: 12 }}>
               <AppDateFiled
+                name="admission.admissionDate"
                 label={"Admission Date"}
                 startIcon={<EventOutlinedIcon fontSize="small" />}
               />
             </Grid>
             <Grid size={{ xs: 12 }}>
               <AppSelectField
+                name="admission.status"
                 label={"Status"}
                 options={statusOptions}
                 startIcon={<CheckCircleOutlinedIcon fontSize="small" />}
@@ -92,7 +103,14 @@ const StudentAdmissionStep = () => {
 
         {/* Academic Placement */}
         <Grid size={{ xs: 12, md: 6 }}>
-          <Box sx={{ pb: 1, mb: 2, borderBottom: "1px solid", borderColor: "divider" }}>
+          <Box
+            sx={{
+              pb: 1,
+              mb: 2,
+              borderBottom: "1px solid",
+              borderColor: "divider",
+            }}
+          >
             <Typography
               variant="subtitle2"
               fontWeight={700}
@@ -105,6 +123,7 @@ const StudentAdmissionStep = () => {
           <Grid container spacing={2.5}>
             <Grid size={{ xs: 12 }}>
               <AppSelectField
+                name="admission.className"
                 label={"Class"}
                 options={classOptions}
                 startIcon={<SchoolOutlinedIcon fontSize="small" />}
@@ -112,6 +131,7 @@ const StudentAdmissionStep = () => {
             </Grid>
             <Grid size={{ xs: 12 }}>
               <AppSelectField
+                name="admission.section"
                 label={"Section"}
                 required
                 options={sectionOptions}
@@ -120,6 +140,7 @@ const StudentAdmissionStep = () => {
             </Grid>
             <Grid size={{ xs: 12 }}>
               <AppDateFiled
+                name="admission.academicYear"
                 label={"Academic year"}
                 views={["year"]}
                 startIcon={<CalendarMonthOutlinedIcon fontSize="small" />}

@@ -1,7 +1,10 @@
 const getErrorMessage = (error) => {
-  // Backend Message Priority
-  if (error?.response?.data?.message) {
-    return error.response.data.message;
+  const response = error?.response?.data;
+  if (response?.errors && response.errors.length > 0) {
+    return response.errors[0];
+  }
+  if (response?.message) {
+    return response.message;
   }
 
   // Network Error

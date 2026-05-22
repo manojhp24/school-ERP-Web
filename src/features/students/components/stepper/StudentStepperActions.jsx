@@ -3,7 +3,21 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckIcon from "@mui/icons-material/Check";
 
-const StudentStepperActions = ({ activeSteps, setActiveStep, steps }) => {
+const StudentStepperActions = ({
+  activeSteps,
+  setActiveStep,
+  steps,
+  onSubmit,
+  isPending,
+}) => {
+  const isLastStep = activeSteps === steps.length - 1;
+  const handelNext = () => {
+    if (isLastStep) {
+      onSubmit();
+      return;
+    }
+    setActiveStep((prev) => prev + 1);
+  };
   return (
     <Paper
       elevation={0}
@@ -57,14 +71,23 @@ const StudentStepperActions = ({ activeSteps, setActiveStep, steps }) => {
           display: { xs: "none", md: "block" },
         }}
       >
-        Step {activeSteps + 1} of {steps.length}: <Box component="span" sx={{ color: "text.primary", fontWeight: 600 }}>{steps[activeSteps]}</Box>
+        Step {activeSteps + 1} of {steps.length}:{" "}
+        <Box component="span" sx={{ color: "text.primary", fontWeight: 600 }}>
+          {steps[activeSteps]}
+        </Box>
       </Typography>
 
       <Button
         variant="contained"
         color={activeSteps === 3 ? "success" : "primary"}
-        onClick={() => setActiveStep((prev) => prev + 1)}
-        endIcon={activeSteps === 3 ? <CheckIcon fontSize="small" /> : <ArrowForwardIcon fontSize="small" />}
+        onClick={handelNext}
+        endIcon={
+          isLastStep ? (
+            <CheckIcon fontSize="small" />
+          ) : (
+            <ArrowForwardIcon fontSize="small" />
+          )
+        }
         sx={{
           borderRadius: 2,
           textTransform: "none",
@@ -77,7 +100,11 @@ const StudentStepperActions = ({ activeSteps, setActiveStep, steps }) => {
           },
         }}
       >
-        {activeSteps === 3 ? "Submit Admission" : "Continue"}
+        {isPending
+          ? "Submitting...."
+          : isLastStep
+            ? "Submit Admission"
+            : "Continue"}
       </Button>
     </Paper>
   );

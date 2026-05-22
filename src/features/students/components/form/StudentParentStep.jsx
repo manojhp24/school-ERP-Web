@@ -15,7 +15,14 @@ const StudentParentStep = () => {
       <Grid container spacing={4}>
         {/* Father's Details */}
         <Grid size={{ xs: 12, md: 6 }}>
-          <Box sx={{ pb: 1, mb: 2, borderBottom: "1px solid", borderColor: "divider" }}>
+          <Box
+            sx={{
+              pb: 1,
+              mb: 2,
+              borderBottom: "1px solid",
+              borderColor: "divider",
+            }}
+          >
             <Typography
               variant="subtitle2"
               fontWeight={700}
@@ -28,6 +35,7 @@ const StudentParentStep = () => {
           <Grid container spacing={2.5}>
             <Grid size={{ xs: 12 }}>
               <AppTextField
+                name="student.parentDetails.fatherName"
                 label="Father's Name"
                 required
                 type="text"
@@ -36,6 +44,7 @@ const StudentParentStep = () => {
             </Grid>
             <Grid size={{ xs: 12 }}>
               <AppTextField
+                name="student.parentDetails.fatherContactNumber"
                 label="Father's Contact Number"
                 required
                 type="text"
@@ -47,7 +56,14 @@ const StudentParentStep = () => {
 
         {/* Mother's Details */}
         <Grid size={{ xs: 12, md: 6 }}>
-          <Box sx={{ pb: 1, mb: 2, borderBottom: "1px solid", borderColor: "divider" }}>
+          <Box
+            sx={{
+              pb: 1,
+              mb: 2,
+              borderBottom: "1px solid",
+              borderColor: "divider",
+            }}
+          >
             <Typography
               variant="subtitle2"
               fontWeight={700}
@@ -60,6 +76,7 @@ const StudentParentStep = () => {
           <Grid container spacing={2.5}>
             <Grid size={{ xs: 12 }}>
               <AppTextField
+                name="student.parentDetails.motherName"
                 label="Mother's Name"
                 required
                 type="text"
@@ -68,6 +85,7 @@ const StudentParentStep = () => {
             </Grid>
             <Grid size={{ xs: 12 }}>
               <AppTextField
+                name="student.parentDetails.motherContactNumber"
                 label="Mother's Contact Number"
                 required
                 type="text"

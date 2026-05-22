@@ -1,21 +1,31 @@
 import { TextField, InputAdornment } from "@mui/material";
+import { Controller, useFormContext } from "react-hook-form";
 
-const AppTextField = ({ label, startIcon, endIcon, ...props }) => {
+const AppTextField = ({ name, label, startIcon, endIcon, ...props }) => {
+  const { control } = useFormContext();
   return (
-    <TextField
-      fullWidth
-      variant="outlined"
-      label={label}
-      InputProps={{
-        startAdornment: startIcon ? (
-          <InputAdornment position="start">{startIcon}</InputAdornment>
-        ) : null,
+    <Controller
+      name={name}
+      control={control}
+      render={({ field }) => (
+        <TextField
+          {...field}
+          value={field.value || ""}
+          fullWidth
+          variant="outlined"
+          label={label}
+          InputProps={{
+            startAdornment: startIcon ? (
+              <InputAdornment position="start">{startIcon}</InputAdornment>
+            ) : null,
 
-        endAdornment: endIcon ? (
-          <InputAdornment position="end">{endIcon}</InputAdornment>
-        ) : null,
-      }}
-      {...props}
+            endAdornment: endIcon ? (
+              <InputAdornment position="end">{endIcon}</InputAdornment>
+            ) : null,
+          }}
+          {...props}
+        />
+      )}
     />
   );
 };

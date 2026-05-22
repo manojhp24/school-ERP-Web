@@ -19,6 +19,7 @@ const StudentAddressStep = () => {
       <Grid container spacing={2.5}>
         <Grid size={{ xs: 12 }}>
           <AppTextField
+            name="student.addressDetails.addressLine"
             label={"Address Line"}
             required
             type="text"
@@ -28,6 +29,7 @@ const StudentAddressStep = () => {
 
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
+            name="student.addressDetails.village"
             label={"Village / Locality"}
             required
             type="text"
@@ -37,6 +39,7 @@ const StudentAddressStep = () => {
 
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
+            name="student.addressDetails.district"
             label={"District"}
             required
             type="text"
@@ -46,6 +49,7 @@ const StudentAddressStep = () => {
 
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
+            name="student.addressDetails.taluk"
             label={"Taluk / Sub-division"}
             required
             type="text"
@@ -55,6 +59,7 @@ const StudentAddressStep = () => {
 
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
+            name="student.addressDetails.state"
             label={"State"}
             required
             type="text"
@@ -64,6 +69,7 @@ const StudentAddressStep = () => {
 
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
+            name="student.addressDetails.pincode"
             label={"Pincode"}
             required
             type="text"

@@ -31,6 +31,7 @@ const StudentPersonalStep = () => {
       <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
+            name="student.firstName"
             label="First Name"
             required
             startIcon={<PersonOutlineOutlinedIcon />}
@@ -38,6 +39,7 @@ const StudentPersonalStep = () => {
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
+            name="student.lastName"
             label="Last Name"
             required
             startIcon={<PersonOutlineOutlinedIcon />}
@@ -48,6 +50,7 @@ const StudentPersonalStep = () => {
       <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
         <Grid size={{ xs: 12, md: 6 }}>
           <AppTextField
+            name="student.satsNumber"
             label="SATS Number"
             required
             startIcon={<BadgeOutlinedIcon />}
@@ -55,6 +58,7 @@ const StudentPersonalStep = () => {
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
           <AppSelectField
+            name="student.personalDetails.gender"
             label={"Gender"}
             options={genderOptions}
             startIcon={<WcOutlinedIcon />}
@@ -66,6 +70,7 @@ const StudentPersonalStep = () => {
       <Grid container spacing={2.5}>
         <Grid size={{ xs: 12, md: 6 }}>
           <AppDateFiled
+            name="student.personalDetails.dateOfBirth"
             label={"Date of Birth"}
             startIcon={<CakeOutlinedIcon />}
             required
