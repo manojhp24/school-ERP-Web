@@ -1,4 +1,12 @@
-import { Button, Stack, IconButton, Tooltip } from "@mui/material";
+import {
+  Button,
+  Stack,
+  IconButton,
+  Tooltip,
+  TextField,
+  MenuItem,
+  InputAdornment,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import AddIcon from "@mui/icons-material/Add";
@@ -6,9 +14,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-
-import AppTextField from "../../../../components/form/AppTextField";
-import AppSelectField from "../../../../components/form/AppSelectFiled";
 
 const StudentTableToolbar = ({
   searchQuery,
@@ -38,35 +43,52 @@ const StudentTableToolbar = ({
           alignItems={{ xs: "stretch", sm: "center" }}
           sx={{ width: "100%" }}
         >
-          <AppTextField
+          <TextField
+            fullWidth
             size="small"
             placeholder="Search by SATS, Name, Father Name, District..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            startIcon={<SearchIcon fontSize="small" sx={{ color: "text.secondary" }} />}
-            endIcon={
-              searchQuery ? (
-                <IconButton
-                  size="small"
-                  onClick={() => setSearchQuery("")}
-                  edge="end"
-                >
-                  <ClearIcon fontSize="small" />
-                </IconButton>
-              ) : null
-            }
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon
+                    fontSize="small"
+                    sx={{ color: "text.secondary" }}
+                  />
+                </InputAdornment>
+              ),
+
+              endAdornment: searchQuery ? (
+                <InputAdornment position="end">
+                  <IconButton
+                    size="small"
+                    onClick={() => setSearchQuery("")}
+                    edge="end"
+                  >
+                    <ClearIcon fontSize="small" />
+                  </IconButton>
+                </InputAdornment>
+              ) : null,
+            }}
           />
 
-          <AppSelectField
+          <TextField
+            select
+            fullWidth
             size="small"
             value={genderFilter}
             onChange={(e) => setGenderFilter(e.target.value)}
-            startIcon={<FilterListIcon fontSize="small" sx={{ color: "text.secondary" }} />}
-            options={[
-              { label: "All Gender", value: "" },
-              { label: "Male", value: "Male" },
-              { label: "Female", value: "Female" },
-            ]}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <FilterListIcon
+                    fontSize="small"
+                    sx={{ color: "text.secondary" }}
+                  />
+                </InputAdornment>
+              ),
+            }}
             sx={{
               minWidth: {
                 xs: "100%",
@@ -76,7 +98,13 @@ const StudentTableToolbar = ({
                 sm: 200,
               },
             }}
-          />
+          >
+            <MenuItem value="">All Gender</MenuItem>
+
+            <MenuItem value="Male">Male</MenuItem>
+
+            <MenuItem value="Female">Female</MenuItem>
+          </TextField>
 
           {isFiltered && (
             <Tooltip title="Reset all filters">
