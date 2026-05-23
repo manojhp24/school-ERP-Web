@@ -29,7 +29,9 @@ const StudentTable = ({ searchQuery = "", genderFilter = "" }) => {
       const firstName = (student.firstName || "").toLowerCase();
       const lastName = (student.lastName || "").toLowerCase();
       const fullName = `${firstName} ${lastName}`.toLowerCase();
-      const fatherName = (student.parentDetails?.fatherName || "").toLowerCase();
+      const fatherName = (
+        student.parentDetails?.fatherName || ""
+      ).toLowerCase();
       const district = (student.addressDetails?.district || "").toLowerCase();
 
       return (
@@ -125,9 +127,10 @@ const StudentTable = ({ searchQuery = "", genderFilter = "" }) => {
             "& .MuiTablePagination-root": {
               color: "text.secondary",
             },
-            "& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows": {
-              fontSize: "0.8rem",
-            },
+            "& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows":
+              {
+                fontSize: "0.8rem",
+              },
           }}
         />
       </Box>

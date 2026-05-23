@@ -70,14 +70,14 @@ const StudentPhotoUpload = () => {
       sx={{
         alignItems: "center",
         textAlign: "center",
-        gap: 1.5,
-        p: { xs: 3, sm: 4 },
+        gap: 2,
+        p: { xs: 3, md: 2, lg: 3 },
         bgcolor: "background.paper",
         borderRadius: 3,
         border: "1px solid",
         borderColor: "divider",
         width: "100%",
-        maxWidth: 240,
+        maxWidth: { xs: 240, md: "100%" },
         boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.02)",
       }}
     >

@@ -16,7 +16,7 @@ const StudentAddressStep = () => {
       subtitle={"Enter student permanent residential and region details"}
       icon={LocationOnOutlinedIcon}
     >
-      <Grid container spacing={2.5}>
+      <Grid container spacing={3}>
         <Grid size={{ xs: 12 }}>
           <AppTextField
             name="student.addressDetails.addressLine"
@@ -27,7 +27,7 @@ const StudentAddressStep = () => {
           />
         </Grid>
 
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppTextField
             name="student.addressDetails.village"
             label={"Village / Locality"}
@@ -37,7 +37,7 @@ const StudentAddressStep = () => {
           />
         </Grid>
 
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppTextField
             name="student.addressDetails.district"
             label={"District"}
@@ -47,7 +47,7 @@ const StudentAddressStep = () => {
           />
         </Grid>
 
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppTextField
             name="student.addressDetails.taluk"
             label={"Taluk / Sub-division"}
@@ -57,7 +57,7 @@ const StudentAddressStep = () => {
           />
         </Grid>
 
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppTextField
             name="student.addressDetails.state"
             label={"State"}
@@ -67,7 +67,7 @@ const StudentAddressStep = () => {
           />
         </Grid>
 
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppTextField
             name="student.addressDetails.pincode"
             label={"Pincode"}

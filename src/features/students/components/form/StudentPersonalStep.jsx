@@ -10,17 +10,19 @@ import FormSectionLayout from "../../../../components/form/FormSectionLayout";
 import AppSelectField from "../../../../components/form/AppSelectFiled";
 import AppDateFiled from "../../../../components/form/AppDateField";
 
+// Static gender options definition
+const GENDER_OPTIONS = [
+  {
+    label: "Male",
+    value: "Male",
+  },
+  {
+    label: "Female",
+    value: "Female",
+  },
+];
+
 const StudentPersonalStep = () => {
-  const genderOptions = [
-    {
-      label: "Male",
-      value: "Male",
-    },
-    {
-      label: "Female",
-      value: "Female",
-    },
-  ];
   return (
     <FormSectionLayout
       title="Personal Information"
@@ -28,51 +30,45 @@ const StudentPersonalStep = () => {
       leftContent={<StudentPhotoUpload />}
       icon={PersonIcon}
     >
-      <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
-        <Grid size={{ xs: 12, md: 6 }}>
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppTextField
             name="student.firstName"
             label="First Name"
             required
-            startIcon={<PersonOutlineOutlinedIcon />}
+            startIcon={<PersonOutlineOutlinedIcon fontSize="small" />}
           />
         </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppTextField
             name="student.lastName"
             label="Last Name"
             required
-            startIcon={<PersonOutlineOutlinedIcon />}
+            startIcon={<PersonOutlineOutlinedIcon fontSize="small" />}
           />
         </Grid>
-      </Grid>
-
-      <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppTextField
             name="student.satsNumber"
             label="SATS Number"
             required
-            startIcon={<BadgeOutlinedIcon />}
+            startIcon={<BadgeOutlinedIcon fontSize="small" />}
           />
         </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppSelectField
             name="student.personalDetails.gender"
-            label={"Gender"}
-            options={genderOptions}
-            startIcon={<WcOutlinedIcon />}
+            label="Gender"
+            options={GENDER_OPTIONS}
+            startIcon={<WcOutlinedIcon fontSize="small" />}
             required
           />
         </Grid>
-      </Grid>
-
-      <Grid container spacing={2.5}>
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <AppDateFiled
             name="student.personalDetails.dateOfBirth"
-            label={"Date of Birth"}
-            startIcon={<CakeOutlinedIcon />}
+            label="Date of Birth"
+            startIcon={<CakeOutlinedIcon fontSize="small" />}
             required
           />
         </Grid>
