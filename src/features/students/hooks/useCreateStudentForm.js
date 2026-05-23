@@ -6,10 +6,14 @@ import useCreateStudent from "./useCreateStudent";
 import getErrorMessage from "../../../services/api/apiErrorHandler";
 import { useEffect } from "react";
 import generateAcademicYear from "../utils/generateAcademicYear";
+import { zodResolver } from "@hookform/resolvers/zod";
+import studentAdmissionSchema from "../validations/studentAdmissionSchema";
 
 const useCreateStudentForm = () => {
   const navigate = useNavigate();
   const methods = useForm({
+    resolver: zodResolver(studentAdmissionSchema),
+    mode: "onChange",
     defaultValues: studentFormDefaultValues,
   });
   const { mutateAsync, isPending, isError, error, isSuccess, data } =

@@ -3,14 +3,20 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { InputAdornment } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
+import { commonInputStyles } from "./AppTextField";
 
-const AppDateFiled = ({ name, label, startIcon, ...props }) => {
+const AppDateFiled = ({ name, label, required, rules, startIcon, sx, ...props }) => {
   const { control } = useFormContext();
+
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
+      rules={{
+        required: required ? `${label} is required` : false,
+        ...rules,
+      }}
+      render={({ field, fieldState: { error, isTouched }, formState: { isSubmitted } }) => (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             {...field}
@@ -22,11 +28,16 @@ const AppDateFiled = ({ name, label, startIcon, ...props }) => {
               textField: {
                 fullWidth: true,
                 size: "small",
-                input: {
+                required: required,
+                error: !!error && (isTouched || isSubmitted),
+                helperText: !!error && (isTouched || isSubmitted) ? error?.message : "",
+                sx: {
+                  ...commonInputStyles,
+                  ...sx,
+                },
+                InputProps: {
                   startAdornment: startIcon ? (
-                    <InputAdornment position="start">
-                      {startIcon}
-                    </InputAdornment>
+                    <InputAdornment position="start">{startIcon}</InputAdornment>
                   ) : null,
                 },
               },
