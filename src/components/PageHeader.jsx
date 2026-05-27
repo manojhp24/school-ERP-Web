@@ -14,7 +14,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 /**
  * PageHeader provides a premium, enterprise-grade header layout for the School ERP.
- * 
+ *
  * Satisfies User Version 1 styling:
  * - Left primary accent pill (4px width) scaling from 26px (title only) to 44px (title + subtitle).
  * - High-fidelity bold static title typography.
