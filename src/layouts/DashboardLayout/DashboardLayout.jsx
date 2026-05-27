@@ -28,7 +28,8 @@ const DashboardLayout = () => {
     <Box
       sx={{
         display: "flex",
-        minHeight: "100vh",
+        height: "100vh",
+        overflow: "hidden",
         backgroundColor: "background.default",
       }}
     >
@@ -66,6 +67,8 @@ const DashboardLayout = () => {
           display: "flex",
           flexDirection: "column",
           minWidth: 0, // Prevent flex grid item blowout
+          height: "100vh",
+          overflow: "hidden",
         }}
       >
         {/*NavBar */}
