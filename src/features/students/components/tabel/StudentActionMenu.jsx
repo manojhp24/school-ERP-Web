@@ -1,12 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
-import { IconButton, Menu, MenuItem, ListItemIcon, ListItemText } from "@mui/material";
+import {
+  IconButton,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 
 const StudentActionsMenu = ({ student }) => {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const open = Boolean(anchorEl);
@@ -64,15 +73,28 @@ const StudentActionsMenu = ({ student }) => {
           },
         }}
       >
+        <MenuItem onClick={() => { navigate(`/student/${student._id}`); handleCloseMenu(); }}>
+          <ListItemIcon
+            sx={{ minWidth: "auto !important", color: "text.secondary" }}
+          >
+            <VisibilityOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="View Profile" />
+        </MenuItem>
+
         <MenuItem onClick={handleEdit}>
-          <ListItemIcon sx={{ minWidth: "auto !important", color: "text.secondary" }}>
+          <ListItemIcon
+            sx={{ minWidth: "auto !important", color: "text.secondary" }}
+          >
             <EditOutlinedIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Edit" />
         </MenuItem>
 
         <MenuItem onClick={handleDelete} sx={{ color: "error.main" }}>
-          <ListItemIcon sx={{ minWidth: "auto !important", color: "error.main" }}>
+          <ListItemIcon
+            sx={{ minWidth: "auto !important", color: "error.main" }}
+          >
             <DeleteOutlineIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Delete" />

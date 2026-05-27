@@ -61,7 +61,10 @@ export const studentTableColumns = [
           >
             {initials}
           </Avatar>
-          <Typography variant="body2" sx={{ fontWeight: 600, color: "text.primary" }}>
+          <Typography
+            variant="body2"
+            sx={{ fontWeight: 600, color: "text.primary" }}
+          >
             {`${firstName} ${lastName}`}
           </Typography>
         </Box>
@@ -89,7 +92,9 @@ export const studentTableColumns = [
             bgcolor: isMale ? colorTokens.navy[50] : colorTokens.purple[50],
             color: isMale ? colorTokens.navy[700] : colorTokens.purple[900],
             border: "1px solid",
-            borderColor: isMale ? colorTokens.navy[100] : colorTokens.purple[100],
+            borderColor: isMale
+              ? colorTokens.navy[100]
+              : colorTokens.purple[100],
             borderRadius: "6px",
             height: 24,
             px: 0.5,
@@ -122,7 +127,14 @@ export const studentTableColumns = [
       const contact = params.row.parentDetails?.fatherContactNumber || "";
       if (!contact) return "-";
       return (
-        <Box sx={{ display: "flex", alignItems: "center", gap: 0.75, color: "text.secondary" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 0.75,
+            color: "text.secondary",
+          }}
+        >
           <PhoneIcon sx={{ fontSize: 16, opacity: 0.7 }} />
           <Typography variant="body2" color="text.secondary">
             {contact}
@@ -141,7 +153,14 @@ export const studentTableColumns = [
       const district = params.row.addressDetails?.district || "";
       if (!district) return "-";
       return (
-        <Box sx={{ display: "flex", alignItems: "center", gap: 0.75, color: "text.secondary" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 0.75,
+            color: "text.secondary",
+          }}
+        >
           <LocationOnIcon sx={{ fontSize: 16, opacity: 0.7 }} />
           <Typography variant="body2" color="text.secondary">
             {district}
