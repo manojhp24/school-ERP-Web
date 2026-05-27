@@ -6,9 +6,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
-import SideBar from "./Sidebar";
-import Navbar from "./NavBar";
-import { DRAWER_WIDTH, COLLAPSED_DRAWER_WIDTH } from "./constants";
+import SideBar from "./sidebar/Sidebar";
+import Navbar from "./navbar/NavBar";
+import { DRAWER_WIDTH, COLLAPSED_DRAWER_WIDTH } from "./utils/constants";
 
 const DashboardLayout = () => {
   const theme = useTheme();
@@ -36,7 +36,11 @@ const DashboardLayout = () => {
       <Box
         component="nav"
         sx={{
-          width: isMobile ? 0 : (collapsed ? COLLAPSED_DRAWER_WIDTH : DRAWER_WIDTH),
+          width: isMobile
+            ? 0
+            : collapsed
+              ? COLLAPSED_DRAWER_WIDTH
+              : DRAWER_WIDTH,
           flexShrink: 0,
           transition: theme.transitions.create("width", {
             easing: theme.transitions.easing.sharp,
