@@ -21,10 +21,7 @@ const StudentPage = () => {
           genderFilter={genderFilter}
           setGenderFilter={setGenderFilter}
         />
-        <StudentTable
-          searchQuery={searchQuery}
-          genderFilter={genderFilter}
-        />
+        <StudentTable searchQuery={searchQuery} genderFilter={genderFilter} />
       </PageContainer>
     </>
   );

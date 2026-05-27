@@ -9,3 +9,8 @@ export const createStudentAdmission = async (payload) => {
   const response = await apiClient.post("/students/student-admission", payload);
   return response.data;
 };
+
+export const getStudentById = async (id) => {
+  const response = await apiClient.get(`/students/${id}`);
+  return response.data;
+};
