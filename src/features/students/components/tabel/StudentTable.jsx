@@ -7,15 +7,26 @@ import StudentTableSkeleton from "./StudentTableSkeleton.jsx";
 import useStudents from "../../hooks/useStudents.js";
 import StudentErrorState from "../states/StudentErrorState.jsx";
 
-const StudentTable = ({ searchQuery = "", genderFilter = "" }) => {
+const StudentTable = ({
+  searchQuery = "",
+  genderFilter = "",
+  statusFilter = "active",
+}) => {
   const { students, isLoading, isError } = useStudents();
 
   if (isError) {
     return <StudentErrorState />;
   }
-
-  // Filter students locally in-memory
   const filteredStudents = students.filter((student) => {
+    const isDeleted = !!student.isDeleted;
+    const showActive = statusFilter === "active";
+    if (showActive && isDeleted) {
+      return false;
+    }
+    if (!showActive && !isDeleted) {
+      return false;
+    }
+
     // Gender Filter
     const gender = student.personalDetails?.gender || "";
     if (genderFilter && gender.toLowerCase() !== genderFilter.toLowerCase()) {

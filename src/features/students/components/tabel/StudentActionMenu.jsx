@@ -5,6 +5,9 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import DeleteStudentModal from "../shared/DeleteStudentModal";
+import ActivateStudentModal from "../shared/ActivateStudentModal";
 
 import {
   IconButton,
@@ -17,6 +20,8 @@ import {
 const StudentActionsMenu = ({ student }) => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isActivateModalOpen, setIsActivateModalOpen] = useState(false);
 
   const open = Boolean(anchorEl);
 
@@ -33,8 +38,13 @@ const StudentActionsMenu = ({ student }) => {
     handleCloseMenu();
   };
 
-  const handleDelete = () => {
-    console.log("Delete student:", student);
+  const handleDeactivateClick = () => {
+    setIsDeleteModalOpen(true);
+    handleCloseMenu();
+  };
+
+  const handleActivateClick = () => {
+    setIsActivateModalOpen(true);
     handleCloseMenu();
   };
 
@@ -73,7 +83,12 @@ const StudentActionsMenu = ({ student }) => {
           },
         }}
       >
-        <MenuItem onClick={() => { navigate(`/student/${student._id}`); handleCloseMenu(); }}>
+        <MenuItem
+          onClick={() => {
+            navigate(`/student/${student._id}`);
+            handleCloseMenu();
+          }}
+        >
           <ListItemIcon
             sx={{ minWidth: "auto !important", color: "text.secondary" }}
           >
@@ -91,15 +106,44 @@ const StudentActionsMenu = ({ student }) => {
           <ListItemText primary="Edit" />
         </MenuItem>
 
-        <MenuItem onClick={handleDelete} sx={{ color: "error.main" }}>
-          <ListItemIcon
-            sx={{ minWidth: "auto !important", color: "error.main" }}
+        {student.isDeleted ? (
+          <MenuItem
+            onClick={handleActivateClick}
+            sx={{ color: "success.main" }}
           >
-            <DeleteOutlineIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Delete" />
-        </MenuItem>
+            <ListItemIcon
+              sx={{ minWidth: "auto !important", color: "success.main" }}
+            >
+              <CheckCircleOutlineIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Activate" />
+          </MenuItem>
+        ) : (
+          <MenuItem
+            onClick={handleDeactivateClick}
+            sx={{ color: "error.main" }}
+          >
+            <ListItemIcon
+              sx={{ minWidth: "auto !important", color: "error.main" }}
+            >
+              <DeleteOutlineIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Deactivate" />
+          </MenuItem>
+        )}
       </Menu>
+
+      <DeleteStudentModal
+        open={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        student={student}
+      />
+
+      <ActivateStudentModal
+        open={isActivateModalOpen}
+        onClose={() => setIsActivateModalOpen(false)}
+        student={student}
+      />
     </>
   );
 };

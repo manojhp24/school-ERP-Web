@@ -6,6 +6,8 @@ import {
   TextField,
   MenuItem,
   InputAdornment,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -20,6 +22,8 @@ const StudentTableToolbar = ({
   setSearchQuery,
   genderFilter,
   setGenderFilter,
+  statusFilter,
+  setStatusFilter,
 }) => {
   const navigate = useNavigate();
   const isFiltered = searchQuery !== "" || genderFilter !== "";
@@ -125,26 +129,81 @@ const StudentTableToolbar = ({
           )}
         </Stack>
 
-        <Button
-          variant="contained"
-          startIcon={<AddIcon />}
-          onClick={() => navigate("/student/create")}
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
           sx={{
             width: {
               xs: "100%",
               md: "auto",
             },
-            height: 40,
-            whiteSpace: "nowrap",
-            px: 3,
-            boxShadow: "none",
-            "&:hover": {
-              boxShadow: "none",
-            },
           }}
         >
-          Add Student
-        </Button>
+          <ToggleButtonGroup
+            value={statusFilter}
+            exclusive
+            onChange={(e, newStatus) => {
+              if (newStatus !== null) {
+                setStatusFilter(newStatus);
+              }
+            }}
+            size="small"
+            sx={{
+              backgroundColor: "background.paper",
+              border: "1px solid",
+              borderColor: "divider",
+              p: 0.5,
+              borderRadius: 3,
+              height: 40,
+              boxShadow: "0px 1px 2px rgba(0,0,0,0.02)",
+              "& .MuiToggleButton-root": {
+                border: "none",
+                borderRadius: 2.5,
+                px: 2.5,
+                textTransform: "none",
+                fontWeight: 700,
+                fontSize: "0.825rem",
+                color: "text.secondary",
+                transition: "all 0.2s ease",
+                "&.Mui-selected": {
+                  backgroundColor: "primary.main",
+                  color: "primary.contrastText",
+                  "&:hover": {
+                    backgroundColor: "primary.dark",
+                  },
+                },
+              },
+            }}
+          >
+            <ToggleButton value="active">Active</ToggleButton>
+            <ToggleButton value="inactive">Inactive</ToggleButton>
+          </ToggleButtonGroup>
+
+          <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            onClick={() => navigate("/student/create")}
+            sx={{
+              width: {
+                xs: "100%",
+                md: "auto",
+              },
+              height: 40,
+              whiteSpace: "nowrap",
+              px: 3,
+              borderRadius: 3,
+              boxShadow: "none",
+              textTransform: "none",
+              fontWeight: 700,
+              "&:hover": {
+                boxShadow: "none",
+              },
+            }}
+          >
+            Add Student
+          </Button>
+        </Stack>
       </Stack>
     </Stack>
   );
