@@ -14,3 +14,13 @@ export const getStudentById = async (id) => {
   const response = await apiClient.get(`/students/${id}`);
   return response.data;
 };
+
+export const deleteStudentById = async (id) => {
+  const response = await apiClient.delete(`/students/${id}`);
+  return response.data;
+};
+
+export const restoreStudentById = async (id) => {
+  const response = await apiClient.patch(`/students/restore/${id}`);
+  return response.data;
+};

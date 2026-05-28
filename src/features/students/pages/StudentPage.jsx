@@ -7,6 +7,7 @@ import StudentTableToolbar from "../components/tabel/StudentTableToolBar";
 const StudentPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("active");
 
   return (
     <>
@@ -20,8 +21,14 @@ const StudentPage = () => {
           setSearchQuery={setSearchQuery}
           genderFilter={genderFilter}
           setGenderFilter={setGenderFilter}
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
         />
-        <StudentTable searchQuery={searchQuery} genderFilter={genderFilter} />
+        <StudentTable
+          searchQuery={searchQuery}
+          genderFilter={genderFilter}
+          statusFilter={statusFilter}
+        />
       </PageContainer>
     </>
   );
