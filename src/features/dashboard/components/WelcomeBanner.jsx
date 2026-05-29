@@ -46,7 +46,7 @@ const WelcomeBanner = () => {
       />
 
       <Grid container spacing={3} alignItems="center" sx={{ position: "relative", zIndex: 1 }}>
-        <Grid item xs={12} md={8}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <Stack spacing={1}>
             <Typography
               variant="overline"
@@ -84,7 +84,7 @@ const WelcomeBanner = () => {
           </Stack>
         </Grid>
 
-        <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: { xs: "flex-start", md: "flex-end" } }}>
+        <Grid size={{ xs: 12, md: 4 }} sx={{ display: "flex", justifyContent: { xs: "flex-start", md: "flex-end" } }}>
           <Box
             sx={{
               display: "flex",
