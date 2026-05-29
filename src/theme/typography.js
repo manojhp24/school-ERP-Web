@@ -1,7 +1,7 @@
 // src/theme/typography.js
 
 const typography = {
-  fontFamily: "'Roboto', sans-serif",
+  fontFamily: "'Lato', sans-serif",
 
   // ─────────────────────────────────────────────────────────────────────
   // Display Typography
