@@ -171,10 +171,7 @@ const StudentProfilePage = () => {
               zIndex: 90,
             }}
           >
-            <StudentProfileSidebar
-              student={student}
-              admission={addressDetails}
-            />
+            <StudentProfileSidebar student={student} admission={admission} />
           </Box>
         </Grid>
 
