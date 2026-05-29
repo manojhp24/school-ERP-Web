@@ -9,12 +9,13 @@ import StudentStatusBadge from "./StudentStatusBadge";
 import { colorTokens } from "../../../../theme/palette";
 
 const StudentProfileSidebar = ({ student, admission }) => {
-  const { firstName = "", lastName = "", satsNumber = "", parentDetails = {} } = student || {};
+  const { firstName = "", lastName = "", satsNumber = "", parentDetails = {}, personalDetails = {} } = student || {};
   const { className = "", section = "", rollNumber = "", academicYear = "", status = "Active" } = admission || {};
 
   const firstLetter = firstName ? firstName.charAt(0).toUpperCase() : "";
   const lastLetter = lastName ? lastName.charAt(0).toUpperCase() : "";
   const initials = `${firstLetter}${lastLetter}` || "?";
+  const imageUrl = personalDetails?.studentImage;
 
   return (
     <Paper
@@ -32,6 +33,7 @@ const StudentProfileSidebar = ({ student, admission }) => {
       {/* Profile Photo / Initials */}
       <Stack alignItems="center" spacing={2.5}>
         <Avatar
+          src={imageUrl}
           sx={{
             width: 110,
             height: 110,

@@ -40,14 +40,16 @@ export const studentTableColumns = [
     flex: 1.5,
     minWidth: 220,
     renderCell: (params) => {
-      const { firstName = "", lastName = "" } = params.row;
+      const { firstName = "", lastName = "", personalDetails = {} } = params.row;
       const firstLetter = firstName ? firstName.charAt(0).toUpperCase() : "";
       const lastLetter = lastName ? lastName.charAt(0).toUpperCase() : "";
       const initials = `${firstLetter}${lastLetter}` || "?";
+      const imageUrl = personalDetails?.studentImage;
 
       return (
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
           <Avatar
+            src={imageUrl}
             sx={{
               width: 32,
               height: 32,

@@ -6,6 +6,7 @@ import StudentEmptyState from "../states/StudentEmptyState.jsx";
 import StudentTableSkeleton from "./StudentTableSkeleton.jsx";
 import useStudents from "../../hooks/useStudents.js";
 import StudentErrorState from "../states/StudentErrorState.jsx";
+import filterStudent from "../../utils/filterStudent.js";
 
 const StudentTable = ({
   searchQuery = "",
@@ -17,43 +18,11 @@ const StudentTable = ({
   if (isError) {
     return <StudentErrorState />;
   }
-  const filteredStudents = students.filter((student) => {
-    const isDeleted = !!student.isDeleted;
-    const showActive = statusFilter === "active";
-    if (showActive && isDeleted) {
-      return false;
-    }
-    if (!showActive && !isDeleted) {
-      return false;
-    }
-
-    // Gender Filter
-    const gender = student.personalDetails?.gender || "";
-    if (genderFilter && gender.toLowerCase() !== genderFilter.toLowerCase()) {
-      return false;
-    }
-
-    // Search Query (SATS number, Name, Father's Name, District)
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      const satsNumber = (student.satsNumber || "").toLowerCase();
-      const firstName = (student.firstName || "").toLowerCase();
-      const lastName = (student.lastName || "").toLowerCase();
-      const fullName = `${firstName} ${lastName}`.toLowerCase();
-      const fatherName = (
-        student.parentDetails?.fatherName || ""
-      ).toLowerCase();
-      const district = (student.addressDetails?.district || "").toLowerCase();
-
-      return (
-        satsNumber.includes(query) ||
-        fullName.includes(query) ||
-        fatherName.includes(query) ||
-        district.includes(query)
-      );
-    }
-
-    return true;
+  const filteredStudents = filterStudent({
+    students,
+    genderFilter,
+    statusFilter,
+    searchQuery,
   });
 
   return (
