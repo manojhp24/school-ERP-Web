@@ -9,8 +9,20 @@ import StudentStatusBadge from "./StudentStatusBadge";
 import { colorTokens } from "../../../../theme/palette";
 
 const StudentProfileSidebar = ({ student, admission }) => {
-  const { firstName = "", lastName = "", satsNumber = "", parentDetails = {}, personalDetails = {} } = student || {};
-  const { className = "", section = "", rollNumber = "", academicYear = "", status = "Active" } = admission || {};
+  const {
+    firstName = "",
+    lastName = "",
+    satsNumber = "",
+    parentDetails = {},
+    personalDetails = {},
+  } = student || {};
+  const {
+    className = "",
+    section = "",
+    rollNumber = "",
+    academicYear = "",
+    status = "Active",
+  } = admission || {};
 
   const firstLetter = firstName ? firstName.charAt(0).toUpperCase() : "";
   const lastLetter = lastName ? lastName.charAt(0).toUpperCase() : "";
@@ -25,7 +37,8 @@ const StudentProfileSidebar = ({ student, admission }) => {
         border: "1px solid",
         borderColor: "divider",
         borderRadius: 4.5,
-        boxShadow: "0px 1px 3px rgba(0,0,0,0.01), 0px 4px 16px rgba(15, 23, 42, 0.02)",
+        boxShadow:
+          "0px 1px 3px rgba(0,0,0,0.01), 0px 4px 16px rgba(15, 23, 42, 0.02)",
         bgcolor: "background.paper",
         textAlign: "center",
       }}
@@ -102,11 +115,22 @@ const StudentProfileSidebar = ({ student, admission }) => {
             <SchoolOutlinedIcon sx={{ fontSize: 16 }} />
           </Avatar>
           <Box>
-            <Typography variant="caption" color="text.secondary" sx={{ display: "block", fontSize: "0.725rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{
+                display: "block",
+                fontSize: "0.725rem",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+              }}
+            >
               Class & Section
             </Typography>
             <Typography variant="body2" color="text.primary" fontWeight={750}>
-              {className ? `Class ${className}` : "N/A"} - Section {section || "N/A"}
+              {className ? `Class ${className}` : "N/A"} - Section{" "}
+              {section || "N/A"}
             </Typography>
           </Box>
         </Box>
@@ -125,7 +149,17 @@ const StudentProfileSidebar = ({ student, admission }) => {
             <NumbersOutlinedIcon sx={{ fontSize: 16 }} />
           </Avatar>
           <Box>
-            <Typography variant="caption" color="text.secondary" sx={{ display: "block", fontSize: "0.725rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{
+                display: "block",
+                fontSize: "0.725rem",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+              }}
+            >
               Roll Number
             </Typography>
             <Typography variant="body2" color="text.primary" fontWeight={750}>
@@ -148,7 +182,17 @@ const StudentProfileSidebar = ({ student, admission }) => {
             <CalendarTodayOutlinedIcon sx={{ fontSize: 15 }} />
           </Avatar>
           <Box>
-            <Typography variant="caption" color="text.secondary" sx={{ display: "block", fontSize: "0.725rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{
+                display: "block",
+                fontSize: "0.725rem",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+              }}
+            >
               Academic Year
             </Typography>
             <Typography variant="body2" color="text.primary" fontWeight={750}>
@@ -171,11 +215,23 @@ const StudentProfileSidebar = ({ student, admission }) => {
             <PhoneOutlinedIcon sx={{ fontSize: 16 }} />
           </Avatar>
           <Box>
-            <Typography variant="caption" color="text.secondary" sx={{ display: "block", fontSize: "0.725rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{
+                display: "block",
+                fontSize: "0.725rem",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+              }}
+            >
               Parent Contact
             </Typography>
             <Typography variant="body2" color="text.primary" fontWeight={750}>
-              {parentDetails?.fatherContactNumber || parentDetails?.motherContactNumber || "N/A"}
+              {parentDetails?.fatherContactNumber ||
+                parentDetails?.motherContactNumber ||
+                "N/A"}
             </Typography>
           </Box>
         </Box>
