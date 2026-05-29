@@ -18,15 +18,14 @@ const useCreateStudentForm = () => {
     mode: "onChange",
     defaultValues: studentFormDefaultValues,
   });
-  const { mutateAsync, isPending, isError, error, isSuccess, data } =
-    useCreateStudent();
+  const { mutateAsync, isPending } = useCreateStudent();
   const onSubmit = async (formData) => {
     try {
       const payload = buildStudentAdmissionPayload(formData);
 
       const multiPartData = buildStudentFormData(payload);
 
-      await mutateAsync(multiPartData);
+      const response = await mutateAsync(multiPartData);
       toast.success(response.message);
       navigate("/student");
 
