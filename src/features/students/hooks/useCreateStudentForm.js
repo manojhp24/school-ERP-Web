@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import generateAcademicYear from "../utils/generateAcademicYear";
 import { zodResolver } from "@hookform/resolvers/zod";
 import studentAdmissionSchema from "../validations/studentAdmissionSchema";
+import buildStudentAdmissionPayload from "../utils/buildStudentAdmissionPayload";
+import buildStudentFormData from "../utils/buildStudentFormData";
 
 const useCreateStudentForm = () => {
   const navigate = useNavigate();
@@ -20,53 +22,20 @@ const useCreateStudentForm = () => {
     useCreateStudent();
   const onSubmit = async (formData) => {
     try {
-      const payload = {
-        ...formData,
+      const payload = buildStudentAdmissionPayload(formData);
 
-        student: {
-          ...formData.student,
+      const multiPartData = buildStudentFormData(payload);
 
-          personalDetails: {
-            ...formData.student.personalDetails,
-
-            dateOfBirth:
-              formData.student.personalDetails.dateOfBirth?.format(
-                "YYYY-MM-DD",
-              ),
-          },
-        },
-
-        admission: {
-          ...formData.admission,
-
-          admissionDate: formData.admission.admissionDate?.format("YYYY-MM-DD"),
-
-          academicYear: generateAcademicYear(formData.admission.admissionDate),
-        },
-      };
-      const response = await mutateAsync(payload);
-      console.log(payload);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    if (isSuccess && data) {
-      toast.success(data?.message);
+      await mutateAsync(multiPartData);
+      toast.success(response.message);
+      navigate("/student");
 
       methods.reset();
-
-      navigate("/student");
+    } catch (error) {
+      console.error("Failed to submit student admission:", error);
+      toast.error(getErrorMessage(error));
     }
-  }, [isSuccess, data]);
-  useEffect(() => {
-    if (isError) {
-      const message = getErrorMessage(error);
-
-      toast.error(message);
-      console.trace;
-    }
-  }, [isError, error]);
+  };
   return {
     methods,
     onSubmit,

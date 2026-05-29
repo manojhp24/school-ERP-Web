@@ -1,7 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
-const StudentErrorState = ({ onRetry = () => window.location.reload() }) => {
+const StudentErrorState = ({
+  title = "Failed to Load Student Records",
+  message = "An error occurred while fetching data.",
+  onRetry = () => window.location.reload(),
+}) => {
   return (
     <Box
       sx={{
@@ -34,11 +38,16 @@ const StudentErrorState = ({ onRetry = () => window.location.reload() }) => {
       </Box>
 
       <Box sx={{ maxWidth: 360, mb: 1 }}>
-        <Typography variant="subtitle1" fontWeight={600} color="text.primary" gutterBottom>
-          Failed to Load Student Records
+        <Typography
+          variant="subtitle1"
+          fontWeight={600}
+          color="text.primary"
+          gutterBottom
+        >
+          {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          An error occurred while fetching the student records. Please check your network connection and try again.
+          {message}
         </Typography>
       </Box>
 

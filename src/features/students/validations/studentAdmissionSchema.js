@@ -10,6 +10,7 @@ const studentAdmissionSchema = z.object({
     personalDetails: z.object({
       gender: z.string().min(1, "Gender is required"),
       dateOfBirth: z.any(),
+      studentImage: z.any().optional(),
     }),
     parentDetails: z.object({
       fatherName: z.string().min(3, "Father name is required"),

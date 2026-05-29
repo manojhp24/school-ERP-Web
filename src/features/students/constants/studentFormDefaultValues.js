@@ -12,6 +12,7 @@ const studentFormDefaultValues = {
     personalDetails: {
       gender: "",
       dateOfBirth: "",
+      studentImage: null,
     },
     addressDetails: {
       addressLine: "",

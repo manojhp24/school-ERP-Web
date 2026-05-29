@@ -6,12 +6,23 @@ export const getStudents = async () => {
 };
 
 export const createStudentAdmission = async (payload) => {
-  const response = await apiClient.post("/students/student-admission", payload);
+  const headers = {};
+  if (payload instanceof FormData) {
+    headers["Content-Type"] = "multipart/form-data";
+  }
+  const response = await apiClient.post(
+    "/students/student-admission",
+    payload,
+    {
+      headers,
+    },
+  );
   return response.data;
 };
 
 export const getStudentById = async (id) => {
   const response = await apiClient.get(`/students/${id}`);
+  console.log(response.data);
   return response.data;
 };
 

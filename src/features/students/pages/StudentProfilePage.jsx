@@ -1,16 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  Grid,
-  Box,
-  Paper,
-  Stack,
-  Skeleton,
-  Typography,
-  Avatar,
-  Button,
-} from "@mui/material";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Grid, Box, Paper, Stack, Skeleton } from "@mui/material";
 
 // Containers & Custom Hook
 import PageContainer from "../../../components/PageContainer";
@@ -23,6 +12,7 @@ import StudentInfoCard from "../components/profile/StudentInfoCard";
 import StudentAdmissionCard from "../components/profile/StudentAdmissionCard";
 import StudentParentCard from "../components/profile/StudentParentCard";
 import StudentAddressCard from "../components/profile/StudentAddressCard";
+import StudentErrorState from "../components/states/StudentErrorState";
 
 // Profile Skeleton Loading Screen
 const ProfileSkeleton = () => (
@@ -109,70 +99,6 @@ const ProfileSkeleton = () => (
   </Grid>
 );
 
-// Profile Error Screen
-const ProfileErrorState = ({ errorMsg }) => {
-  const navigate = useNavigate();
-  return (
-    <Box
-      sx={{
-        py: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "60vh",
-        textAlign: "center",
-      }}
-    >
-      <Avatar
-        sx={{
-          bgcolor: "error.lighter",
-          color: "error.main",
-          width: 64,
-          height: 64,
-          mb: 3,
-          border: "1px solid",
-          borderColor: "error.light",
-        }}
-      >
-        <ErrorOutlineIcon sx={{ fontSize: 32 }} />
-      </Avatar>
-      <Typography
-        variant="h5"
-        fontWeight={750}
-        color="text.primary"
-        gutterBottom
-      >
-        Student Profile Not Found
-      </Typography>
-      <Typography
-        variant="body2"
-        color="text.secondary"
-        sx={{ maxWidth: 380, mb: 4 }}
-      >
-        {errorMsg ||
-          "The student record could not be found or has been removed from the database. Please verify the ID or contact system administration."}
-      </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        startIcon={<ArrowBackIcon />}
-        onClick={() => navigate("/student")}
-        sx={{
-          borderRadius: 3,
-          textTransform: "none",
-          fontWeight: 700,
-          px: 3,
-          py: 1,
-          boxShadow: "none",
-        }}
-      >
-        Back to Directory
-      </Button>
-    </Box>
-  );
-};
-
 const StudentProfilePage = () => {
   const { studentId } = useParams();
   const { student: studentData, isLoading, isError } = useStudent(studentId);
@@ -212,25 +138,22 @@ const StudentProfilePage = () => {
   if (isError || !studentData) {
     return (
       <PageContainer>
-        <ProfileErrorState />
+        <StudentErrorState
+          title="Student Profile Not Found"
+          message="The requested student profile could not be loaded."
+        />
       </PageContainer>
     );
   }
 
-  // Robustly extract data structures to support both flat and nested schemas
-  const studentObj = studentData.student ? studentData.student : studentData;
-  const admissionObj = studentData.admission
-    ? studentData.admission
-    : studentData;
-  const parentDetailsObj =
-    studentObj.parentDetails || studentData.parentDetails || {};
-  const addressDetailsObj =
-    studentObj.addressDetails || studentData.addressDetails || {};
+  const { student, admission } = studentData;
+
+  const { parentDetails = {} } = student;
+
+  const { addressDetails = {} } = student;
 
   const fullName =
-    `${studentObj.firstName || ""} ${studentObj.lastName || ""}`.trim() ||
-    "N/A";
-
+    `${student.firstName || ""} ${student.lastName || ""}`.trim() || "N/A";
   return (
     <PageContainer>
       <PageHeader
@@ -249,8 +172,8 @@ const StudentProfilePage = () => {
             }}
           >
             <StudentProfileSidebar
-              student={studentObj}
-              admission={admissionObj}
+              student={student}
+              admission={addressDetails}
             />
           </Box>
         </Grid>
@@ -258,10 +181,10 @@ const StudentProfilePage = () => {
         {/* Right Side: Structural Detail Panels */}
         <Grid size={{ xs: 12, md: 8, lg: 8.5 }}>
           <Stack spacing={3.5}>
-            <StudentInfoCard student={studentObj} />
-            <StudentAdmissionCard admission={admissionObj} />
-            <StudentParentCard parentDetails={parentDetailsObj} />
-            <StudentAddressCard addressDetails={addressDetailsObj} />
+            <StudentInfoCard student={student} />
+            <StudentAdmissionCard admission={admission} />
+            <StudentParentCard parentDetails={parentDetails} />
+            <StudentAddressCard addressDetails={addressDetails} />
           </Stack>
         </Grid>
       </Grid>
