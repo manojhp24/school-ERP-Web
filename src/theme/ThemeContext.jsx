@@ -26,7 +26,7 @@ export const ColorModeProvider = ({ children }) => {
       },
       mode,
     }),
-    [mode]
+    [mode],
   );
 
   const theme = useMemo(
@@ -36,7 +36,7 @@ export const ColorModeProvider = ({ children }) => {
         typography,
         components,
       }),
-    [mode]
+    [mode],
   );
 
   return (
