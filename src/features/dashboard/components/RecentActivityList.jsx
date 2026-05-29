@@ -123,6 +123,7 @@ const RecentActivityList = () => {
                   </Typography>
                 </Box>
               }
+              secondaryTypographyProps={{ component: "div" }}
             />
           </ListItem>
         );
