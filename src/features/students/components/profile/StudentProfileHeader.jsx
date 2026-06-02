@@ -5,7 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import RestoreIcon from "@mui/icons-material/Restore";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 const StudentProfileHeader = ({ studentName, satsNumber }) => {
   const navigate = useNavigate();

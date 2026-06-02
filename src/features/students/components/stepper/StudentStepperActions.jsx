@@ -3,7 +3,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckIcon from "@mui/icons-material/Check";
 import CircularProgress from "@mui/material/CircularProgress";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useFormContext } from "react-hook-form";
 // Step fields mapping for targeted react-hook-form validation
 const STEP_FIELDS = [
