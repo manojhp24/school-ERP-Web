@@ -40,6 +40,10 @@ const CreateStudentPage = () => {
         <PageHeader
           title="Student Onboarding"
           subtitle="Enroll and configure comprehensive student ERP profiles"
+          breadcrumbs={[
+            { label: "Student List", path: "/student" },
+            { label: "Student Onboarding", path: "/student/create" },
+          ]}
         />
 
         <Grid

@@ -15,6 +15,7 @@ const StudentPage = () => {
         <PageHeader
           title="Student"
           subtitle="Manage student records, profiles, and academic information"
+          breadcrumbs={[{ label: "Student List", path: "/student" }]}
         />
         <StudentTableToolbar
           searchQuery={searchQuery}

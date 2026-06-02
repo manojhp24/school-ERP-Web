@@ -7,6 +7,7 @@ import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import CreateStudentPage from "../features/students/pages/CreateStudentPage";
 import StudentProfilePage from "../features/students/pages/StudentProfilePage";
 import ProtectedRoutes from "./ProtectedRoutes";
+import EditStudentPage from "../features/students/pages/EditStudentPage";
 
 function AppRoutes() {
   return (
@@ -26,6 +27,10 @@ function AppRoutes() {
           <Route path="/student/create" element={<CreateStudentPage />} />
           <Route path="/student/:studentId" element={<StudentProfilePage />} />
           <Route path="/students/:studentId" element={<StudentProfilePage />} />
+          <Route
+            path="/student/edit/:studentId"
+            element={<EditStudentPage />}
+          />
         </Route>
 
         <Route path="*" element={<Navigate to="/login" replace />} />

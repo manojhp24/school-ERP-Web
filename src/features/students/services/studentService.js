@@ -20,18 +20,28 @@ export const createStudentAdmission = async (payload) => {
   return response.data;
 };
 
-export const getStudentById = async (id) => {
-  const response = await apiClient.get(`/students/${id}`);
-  console.log(response.data);
+export const getStudentById = async (studentId) => {
+  const response = await apiClient.get(`/students/${studentId}`);
   return response.data;
 };
 
-export const deleteStudentById = async (id) => {
-  const response = await apiClient.delete(`/students/${id}`);
+export const updateStudentById = async (studentId, payload) => {
+  const headers = {};
+  if (payload instanceof FormData) {
+    headers["content-Type"] = "multipart/form-data";
+  }
+  const response = await apiClient.patch(`/students/${studentId}`, payload, {
+    headers,
+  });
   return response.data;
 };
 
-export const restoreStudentById = async (id) => {
-  const response = await apiClient.patch(`/students/restore/${id}`);
+export const deleteStudentById = async (studentId) => {
+  const response = await apiClient.delete(`/students/${studentId}`);
+  return response.data;
+};
+
+export const restoreStudentById = async (studentId) => {
+  const response = await apiClient.patch(`/students/restore/${studentId}`);
   return response.data;
 };

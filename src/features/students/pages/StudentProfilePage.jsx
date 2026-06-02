@@ -1,10 +1,23 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Grid, Box, Paper, Stack, Skeleton } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Paper,
+  Stack,
+  Skeleton,
+  Button,
+  Tooltip,
+} from "@mui/material";
+import { toast } from "react-toastify";
 
 // Containers & Custom Hook
 import PageContainer from "../../../components/PageContainer";
 import PageHeader from "../../../components/PageHeader";
 import useStudent from "../hooks/useStudent";
+
+import EditDocumentIcon from "@mui/icons-material/EditDocument";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 // Profile components
 import StudentProfileSidebar from "../components/profile/StudentProfileSidebar";
@@ -102,6 +115,11 @@ const ProfileSkeleton = () => (
 const StudentProfilePage = () => {
   const { studentId } = useParams();
   const { student: studentData, isLoading, isError } = useStudent(studentId);
+  const navigate = useNavigate();
+
+  const handleUpdateClick = () => {
+    navigate(`/student/edit/${studentId}`);
+  };
 
   // Handle Loading State
   if (isLoading) {
@@ -154,11 +172,56 @@ const StudentProfilePage = () => {
 
   const fullName =
     `${student.firstName || ""} ${student.lastName || ""}`.trim() || "N/A";
+  console.log(student.isDeleted);
   return (
     <PageContainer>
       <PageHeader
         title="Student Profile"
         subtitle={`Viewing detailed ERP database record for ${fullName}`}
+        breadcrumbs={[
+          { label: "Student List", path: "/student" },
+          { label: "Student Profile", path: `/student/${studentId}` },
+        ]}
+        actions={
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <Tooltip title="Edit student">
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<EditDocumentIcon />}
+                onClick={handleUpdateClick}
+                sx={{
+                  textTransform: "none",
+                  fontWeight: 700,
+                  width: { xs: "100%", sm: "auto" },
+                }}
+              >
+                Edit
+              </Button>
+            </Tooltip>
+            <Tooltip title="Deactivate student">
+              <Button
+                variant="contained"
+                color={student.isDeleted ? "success" : "error"}
+                startIcon={
+                  student.isDeleted ? (
+                    <CheckCircleOutlineIcon />
+                  ) : (
+                    <DeleteOutlineIcon />
+                  )
+                }
+                onClick={handleUpdateClick}
+                sx={{
+                  textTransform: "none",
+                  fontWeight: 700,
+                  width: { xs: "100%", sm: "auto" },
+                }}
+              >
+                {student.isDeleted ? "Activate" : "Deactivate"}
+              </Button>
+            </Tooltip>
+          </Box>
+        }
       />
 
       <Grid container spacing={{ xs: 3, md: 4 }} sx={{ mt: { xs: 1, md: 2 } }}>

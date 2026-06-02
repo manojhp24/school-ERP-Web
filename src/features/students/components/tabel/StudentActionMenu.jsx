@@ -34,7 +34,7 @@ const StudentActionsMenu = ({ student }) => {
   };
 
   const handleEdit = () => {
-    console.log("Edit student:", student);
+    navigate(`/student/edit/${student._id}`);
     handleCloseMenu();
   };
 
