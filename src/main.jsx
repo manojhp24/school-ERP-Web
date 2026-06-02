@@ -17,7 +17,7 @@ createRoot(document.getElementById("root")).render(
 
         <App />
 
-        <Toaster position="bottom-right" richColors />
+        <Toaster position="bottom-right" richColors closeButton />
       </ColorModeProvider>
     </QueryClientProvider>
   </StrictMode>,
