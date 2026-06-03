@@ -21,7 +21,7 @@ const SidebarActions = ({
         gap: 0.5,
       }}
     >
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           alignItems: "center",
@@ -37,7 +37,7 @@ const SidebarActions = ({
         {(!collapsed || isMobile) && (
           <Typography variant="body2">Support Helpline</Typography>
         )}
-      </Box>
+      </Box> */}
 
       {collapsed && !isMobile ? (
         <Tooltip title="Toggle Theme" placement="right" arrow>

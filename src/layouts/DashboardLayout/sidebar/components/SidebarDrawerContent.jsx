@@ -45,11 +45,11 @@ const SidebarDrawerContent = ({
         ))}
       </Box>
 
-      <SidebarSessionWidget
+      {/* <SidebarSessionWidget
         collapsed={collapsed}
         isMobile={isMobile}
         theme={theme}
-      />
+      /> */}
 
       <Divider sx={{ mx: 2, mb: 1.5 }} />
 
